@@ -8,27 +8,27 @@ import java.util.Scanner;
 
 public class EventHandler {
     private Map<Integer, Event> eventsList;
-    private Scanner scanner;
+    private Scanner scanner; //I was informed that using scanner was a better way to read a line than System.in.read();
 
-    public EventHandler() {
+    public EventHandler() { //basic constructor
         eventsList = new HashMap<>();
         scanner = new Scanner(System.in);
     }
 
-    public Map<Integer, Event> getEventsList() {
+    public Map<Integer, Event> getEventsList() { //getter
         return eventsList;
     }
 
-    public void setEventsList(Map<Integer, Event> eventsList) {
+    public void setEventsList(Map<Integer, Event> eventsList) { //setter
         this.eventsList = eventsList;
     }
 
-    private int getNextEventID() {
+    private int getNextEventID() { //to ensure that events always has a unique ID, this method takes the ID of the latest event and returns the same ID + 1
         if (eventsList.isEmpty()) return 1;
         return eventsList.keySet().stream().max(Integer::compare).get() + 1;
     }
 
-    public void createEvent() {
+    public void createEvent() { // Creates an event with information provided by the user.
         int eventID = getNextEventID();
 
         System.out.print("Event Type: ");
@@ -52,10 +52,10 @@ public class EventHandler {
         System.out.print("Event Points: ");
         int eventPoints = Integer.parseInt(scanner.nextLine());
 
-        boolean completed = false;
+        boolean completed = false; //When an event is created, it is assumed that it is not completed yet.
 
         Event event = new Event(eventID, eventType, eventTitle, eventDesc,
-                eventStartDateTime, eventEndDateTime, eventPoints, completed);
+                eventStartDateTime, eventEndDateTime, eventPoints, completed); //Here is where a new object is created.
 
         eventsList.put(eventID, event);
 
@@ -69,12 +69,12 @@ public class EventHandler {
         Event event = eventsList.get(eventID);
         if (event == null) {
             System.out.println("Event"+ eventID +"not found.");
-            return;
+            return; //Check to see if the even even Exists in the eventsList
         }
 
         System.out.print("New Event Name (leave blank to keep current): ");
         String newName = scanner.nextLine();
-        if (!newName.isEmpty()) event.setEventName(newName);
+        if (!newName.isEmpty()) event.setEventName(newName); //Only edits the data using the setter if newName has been defined
 
         System.out.print("New Description (leave blank to keep current): ");
         String newDesc = scanner.nextLine();
@@ -112,26 +112,26 @@ public class EventHandler {
     }
 
     // Delete an event
-    public void deleteEvent() {
+    public void deleteEvent() { //Removes an event based upon its ID.
         System.out.print("Enter event ID to delete: ");
         int eventID = Integer.parseInt(scanner.nextLine());
 
         if (eventsList.containsKey(eventID)) {
             System.out.print("Are you sure you want to delete this event? (yes/no): ");
             String confirm = scanner.nextLine().toLowerCase();
-
+            // Asks the user if they REALLY want to delete that event
             if (confirm.equals("yes")) {
                 eventsList.remove(eventID);
                 System.out.println("🗑️ Event " + eventID + " deleted.");
             } else {
-                System.out.println("Deletion canceled.");
+                System.out.println("Deletion canceled."); 
             }
         } else {
-            System.out.println("❌ Event not found.");
+            System.out.println("Event not found.");
         }
     }
 
-    public void displayEvents(String dateInput) {
+    public void displayEvents(String dateInput) { //Grabs the event List and displays it to the terminal
         if (eventsList.isEmpty()) {
             System.out.println("No events found.");
             return;
@@ -139,7 +139,7 @@ public class EventHandler {
 
         LocalDate filterDate = null;
 
-        if (dateInput != null && !dateInput.isEmpty()) {
+        if (dateInput != null && !dateInput.isEmpty()) { //A single filter to determine which events will be displayed
         try {
             filterDate = LocalDate.parse(dateInput, DateTimeFormatter.ofPattern("MM-dd-yyyy"));
         } catch (DateTimeParseException e) {

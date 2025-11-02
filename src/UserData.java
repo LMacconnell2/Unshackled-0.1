@@ -8,7 +8,7 @@ public class UserData {
     private int currentBalance;
     private Map<Integer, Event> events;
 
-    public UserData() { //default constructor for gson. Initializes highScores and events automatically in case they are forgotted when the class is called.
+    public UserData() { //default constructor for gson. Initializes highScores and events automatically in case they are forgotten when the class is called.
         this.highScores = new HashMap<>();
         this.events = new HashMap<>();
     } 
@@ -20,7 +20,7 @@ public class UserData {
         this.highScores = highScores;
         this.currentBalance = currentBalance;
         this.events = events;
-    }
+    } //More detailed constructor should it be necessary.
 
     // Getters ====================================
     public String getUser() {

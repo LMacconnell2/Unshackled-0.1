@@ -9,12 +9,12 @@ public class FileHandler {
     public FileHandler() {}
 
     public void saveFile(String filePath, UserData userData) {
-        Gson gson = new GsonBuilder()
+        Gson gson = new GsonBuilder() //Gson made my life SO MUCH EASIER as serialization become a breeze with this package.
         .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
         .setPrettyPrinting()
         .create();
 
-        try (FileWriter writer = new FileWriter(filePath)) {
+        try (FileWriter writer = new FileWriter(filePath)) { //Call the class, then use .to JSON
             gson.toJson(userData, writer);
             System.out.println("Saved user data to JSON.");
         } catch (Exception err) {
@@ -28,7 +28,7 @@ public class FileHandler {
             .create();
 
         try (FileReader reader = new FileReader(filePath)) {
-            UserData user = gson.fromJson(reader, UserData.class);
+            UserData user = gson.fromJson(reader, UserData.class); //Data is first inserted in the UserData.
             System.out.println("Loaded user: " + user.getUser());
             return user;
         } catch (Exception err) {

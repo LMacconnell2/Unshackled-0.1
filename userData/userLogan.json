@@ -7,10 +7,10 @@
     "1": {
       "eventID": 1,
       "eventType": "Work",
-      "eventTitle": "Fareway",
-      "eventDesc": "Working the closing shift",
-      "eventStartDateTime": "2025-10-01 16:00",
-      "eventEndDateTime": "2025-10-01 21:00",
+      "eventTitle": "At the School",
+      "eventDesc": "Working at the school",
+      "eventStartDateTime": "2025-11-01 16:00",
+      "eventEndDateTime": "2025-11-01 22:00",
       "eventPoints": 200,
       "completed": true
     }
