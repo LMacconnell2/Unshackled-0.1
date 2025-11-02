@@ -1,0 +1,18 @@
+{
+  "user": "Logan",
+  "userID": 1,
+  "highScores": {},
+  "currentBalance": 0,
+  "events": {
+    "1": {
+      "eventID": 1,
+      "eventType": "Work",
+      "eventTitle": "Fareway",
+      "eventDesc": "Working the closing shift",
+      "eventStartDateTime": "2025-10-01 16:00",
+      "eventEndDateTime": "2025-10-01 21:00",
+      "eventPoints": 200,
+      "completed": true
+    }
+  }
+}
